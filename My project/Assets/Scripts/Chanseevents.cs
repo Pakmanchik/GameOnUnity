@@ -8,6 +8,9 @@ public class Chanseevents : MonoBehaviour
     private Text                 textToEdit;
     public static string         events;
     
+    [SerializeField] Fighter enemy;
+    [SerializeField] Fighter hero;
+    [SerializeField] ChestUp chest;
 
     private void Start()
     {
@@ -16,21 +19,43 @@ public class Chanseevents : MonoBehaviour
     }
     public void howEvent()
     {
-        int chance = Random.Range(0, 101);
-        if (chance <= 50)//шанс выпадения врага
+        if (ButtonGo.GoesAll)// если нажали кнопку начала 
         {
-            textToEdit.text = "Впереди Враг!";
-            events = "enemy";
-            
-            return;
-        }
-        if( chance > 50)// шанс выпадения сундука
-        {
-            events = "chest";
-            textToEdit.text = "Смотри...Сундук!";
-         
-            return;
+            int chance = Random.Range(0, 101);
+            if (chance >50)//шанс выпадения врага
+            {
+                Debug.Log("Враг");
+                textToEdit.text = "Впереди Враг!";
+                events = "enemy";
+                StartCoroutine(Stop());
+               
+
+                
+            }
+            if (chance <= 50)// шанс выпадения сундука
+            {
+                Debug.Log("Сундук");
+                events = "chest";
+                textToEdit.text = "Смотри...Сундук!";
+                StartCoroutine(Stop());
+
+            }
         }
     }
- 
+    private IEnumerator Stop()
+    {
+        yield return new WaitForSeconds(2f);
+        if(events == "enemy")
+        {
+            enemy.StartBattle();
+            hero.StartBattle();
+        }
+        else
+        {
+            chest.GoingChest();
+        }
+       
+    }
+
+
 }

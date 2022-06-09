@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class ButtonGo : MonoBehaviour
 {
-    private Text            textToEdit;
-    bool                    Goes = false;
-
+    [SerializeField] private Text   textToEdit;
+    [SerializeField] private Fighter hv;
+    bool                            Goes = false;
+  
     public static bool GoesAll = false;// Переменная для начала путешествия 
+    // Chanseevents chanseevents = new Chanseevents();
     void Start()
     {
         textToEdit = GetComponent<Text>(); 
@@ -19,9 +21,13 @@ public class ButtonGo : MonoBehaviour
     {
         if(!Goes)
         {
-         textToEdit.text = "Отдохнуть";
+            hv._fighterAnimator.Run();
+            
+            textToEdit.text = "Отдохнуть";
             Goes = true;
             GoesAll = true;
+            Debug.Log("if !goes");
+            
             return;
         }
         if (Goes)
@@ -29,15 +35,18 @@ public class ButtonGo : MonoBehaviour
             textToEdit.text = "Начать путешествие";
             Goes = false;
             GoesAll = false;
+            Debug.Log("if goes");
             return;
         }
         
     }
-    public void minushp()
-    {
-        HPUI.current -= 10;
-    }
+   
+
 
 
 
 }
+
+
+
+

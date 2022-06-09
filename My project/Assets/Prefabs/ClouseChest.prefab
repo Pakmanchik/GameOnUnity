@@ -96,5 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objForMove: chest
-  sec: 5
+  sec: 6
   speed: 75

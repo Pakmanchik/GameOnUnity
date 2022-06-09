@@ -9,11 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4805181885227780}
-  - component: {fileID: 114850797635947820}
   - component: {fileID: 95346456782871180}
   - component: {fileID: 212259381048184306}
   - component: {fileID: 50512961935941442}
   - component: {fileID: 61252362154681264}
+  - component: {fileID: 251935494}
+  - component: {fileID: 251935495}
+  - component: {fileID: 251935496}
+  - component: {fileID: 251935497}
   m_Layer: 0
   m_Name: LightBandit
   m_TagString: Player
@@ -30,26 +33,12 @@ Transform:
   m_GameObject: {fileID: 1689866831511430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 159.44, y: 159.44, z: 1.5944}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4269114208525818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114850797635947820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689866831511430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8b435a8dc3f604e9a13c4acd7081c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 4
-  m_jumpForce: 7.5
 --- !u!95 &95346456782871180
 Animator:
   serializedVersion: 3
@@ -60,7 +49,7 @@ Animator:
   m_GameObject: {fileID: 1689866831511430}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b95265f99b6d90e438df1308a89c8bab, type: 2}
+  m_Controller: {fileID: 9100000, guid: e486dfb2df9b7584a87b79c4aa79f376, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -128,8 +117,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689866831511430}
-  m_BodyType: 1
-  m_Simulated: 0
+  m_BodyType: 2
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -167,6 +156,62 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &251935494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684c3b67321c85347b4b906035aa8ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _target: {fileID: 0}
+  _fightDistance: 200
+  _currentStayPoint: {fileID: 0}
+--- !u!114 &251935495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d186c6ae3c39aae418a77067ef7de3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 20
+--- !u!114 &251935496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74a9dc73af201e48b773bf873acf619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotateSpeed: 1
+  _moveSpeed: 200
+--- !u!114 &251935497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72c961e41497544bbbca9493953bea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &1943394156383696
 GameObject:
   m_ObjectHideFlags: 0
