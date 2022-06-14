@@ -7,10 +7,13 @@ public class FighterAttak : MonoBehaviour
 {
     [SerializeField] private HeroFighter hv;
      private Fighter fg;
+     private HPUI hPUI;
      
-    [SerializeField] private float       _damage;
+    [SerializeField] public float       _damage;
     private Fighter                     _target;
-
+    public FighterAttak enemy;
+    
+    [SerializeField] private HeroFighter heroFighter;
 
     public void SetTarget(Fighter fighter)
     {
@@ -20,16 +23,23 @@ public class FighterAttak : MonoBehaviour
     {
         hv = GetComponent<HeroFighter>();
         fg = GetComponent<Fighter>();
-        
+        enemy = GetComponent<FighterAttak>();
+        heroFighter = GetComponent<HeroFighter>();
+        hPUI = GetComponent<HPUI>();
+       
+
         if (fg.battleSide == "Enemy")
         {
             _target.TakeDamage(_damage);
             Debug.Log("Урон enemy " + _damage);
+          
         }
         else
         {
+           
             hv.SettingsHero();
             _target.TakeDamage(hv.DamageHero);
+            hPUI.UpdateAttake();
             Debug.Log("Урон героя " + hv.DamageHero);
         }
         

@@ -8,7 +8,7 @@ public class ChestUp : MonoBehaviour
     [SerializeField] private GameObject chest;
     [SerializeField] private HeroFighter hr;
     [SerializeField] private Fighter hrf;
-
+   
     private FighterMove _Move;
     private HeroFighter _herofighter;
     public Animator _animator;
@@ -21,6 +21,7 @@ public class ChestUp : MonoBehaviour
         transform.position = new Vector3(954f, 163f, 0f);
         _Move = GetComponent<FighterMove>();
         _herofighter = GetComponent<HeroFighter>();
+      
         StartCoroutine(ChestDoes());
       
 
@@ -29,7 +30,6 @@ public class ChestUp : MonoBehaviour
     {
         yield return _Move.StarMove(_StayPoint.transform);//дойти до точки
         ButtonGo.GoesAll = false;
-        
         Open();
         yield return new WaitForSeconds(2f);
         transform.position = new Vector3(954f, 163f, 0f);
@@ -38,10 +38,8 @@ public class ChestUp : MonoBehaviour
     public void Open()
     {
         _animator.SetBool(RunParametr, true);
-        
         hrf._fighterAnimator.Idle();
         hr.BonusUp();
-        
-
     }
+  
 }

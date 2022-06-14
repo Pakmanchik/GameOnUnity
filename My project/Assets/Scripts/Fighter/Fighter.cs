@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(FightAnimator), typeof(FighterMove),typeof(FighterAttak))]
@@ -13,12 +14,15 @@ public class Fighter : MonoBehaviour
     [SerializeField] private StayPoint _StayPoint;
     [SerializeField] public string battleSide;
     [SerializeField] private HeroFighter hv;
+    [SerializeField] private AudioSource audioSource;
+    private HPUI hPUI;
+    private DiedScript diedScript;
 
     public FightAnimator _fighterAnimator;
     private FighterMove _fighterMove;
     private FighterAttak _fighterAttack;
-  
 
+    
     private float _health;
 
     private void Awake()
@@ -26,21 +30,26 @@ public class Fighter : MonoBehaviour
         _fighterAnimator = GetComponent<FightAnimator>();
         _fighterMove = GetComponent<FighterMove>();
         _fighterAttack = GetComponent<FighterAttak>();
-        
-       
+        audioSource = GetComponent<AudioSource>();
+        diedScript = GetComponent<DiedScript>();
+        hPUI = GetComponent<HPUI>();
+
     }
 
   
-    public   void StartBattle()
+    public  void StartBattle()
     {
         hv.SettingsHero();
-       if(battleSide == "Enemy")
+       
+        if (battleSide == "Enemy")
         {
             _health = _maxHealth;
         }
         else
         {
+            hv.SettingsHero();
             _health = hv.HealthHero;
+            hPUI.current = hv.HealthHero;
         }
       
         
@@ -85,7 +94,9 @@ public class Fighter : MonoBehaviour
        while (target._health > 0)//пока цель жива 
        {
             _fighterAttack.Attack();
+         
             yield return new WaitForSeconds(_fighterAnimator.StartAttak());// нанести урон
+            audioSource.Play();
             yield return new WaitForSeconds(1f);
                 if (_health <= 0)
                 {
@@ -102,7 +113,7 @@ public class Fighter : MonoBehaviour
             _fighterAnimator.Idle();// остановиться после
             Debug.Log("NotRun");
             hv.Score(25);
-           // Debug.Log(_heroFighter.ScoreAll + " cчет");
+          
         }
         else
         {
@@ -118,10 +129,18 @@ public class Fighter : MonoBehaviour
             }
             else 
             {
+               
                 _fighterAnimator.DeathAll();
+                hPUI.current = 0;
+                hPUI.UpdateAttake();
+                diedScript.DieWindow();
                 yield return new WaitForSeconds(3f);
                 if (PlayerPrefs.GetInt("score") <= hv.ScoreAll)
                     PlayerPrefs.SetInt("score", hv.ScoreAll);
+              
+                
+
+                
             }
             
             

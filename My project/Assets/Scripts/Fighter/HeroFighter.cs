@@ -8,7 +8,9 @@ public class HeroFighter :  MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float damage;
     [SerializeField] private Text textToEdit;
+    [SerializeField] private Text textToEditDamage;
 
+   
 
     public int ChestBonusHp = 0;
     public int ChestBonusDamage = 0;
@@ -16,7 +18,7 @@ public class HeroFighter :  MonoBehaviour
     public float HealthHero;
     public float DamageHero;
     public string d = "dd";
-
+    
     public void SettingsHero()
     {
          HealthHero = health + 25 * ChestBonusHp;
@@ -28,6 +30,7 @@ public class HeroFighter :  MonoBehaviour
         Debug.Log(ScoreAll);
         ss();
     }
+   
     public void BonusUp()
     {
         Debug.Log(HealthHero);
